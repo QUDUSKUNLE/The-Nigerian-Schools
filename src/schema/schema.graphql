@@ -1,0 +1,154 @@
+type Query {
+  user(id: ID!): User
+  users(filter: String): [User]
+  school(id: ID!): School
+  schools: [School]
+}
+
+type Mutation {
+  signup(name: String!, email: String!, password: String!, confirmPassword: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+  put(id: ID!, name: String, email: String): NewProfile!
+  delete(id: ID!): Message
+  register(input: ObjectInput): NewSchool
+  updateSchool(id: ID!, input: UpdateSchool): NewSchool
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  availability: Boolean!
+}
+type AuthPayload {
+  token: String!
+  user: User
+}
+type NewProfile {
+  message: String
+  success: Boolean
+  user: User
+}
+type Message {
+  message: String!
+  success: Boolean
+}
+type NewSchool {
+  message: String!
+  school: School
+}
+type School {
+  id: ID!
+  school_name: String
+  school_address: String
+  school_convention: SchoolConvention
+  school_class: SchoolClass
+  school_section: SchoolSection
+  school_type: SchoolType
+  school_contacts: SchoolContact
+}
+
+type UpdatedSchoolInformation {
+  id: ID!
+  school_name: String
+  school_address: String
+  school_convention: SchoolConvention
+  school_class: SchoolClass
+  school_section: SchoolSection
+  school_type: SchoolType
+  school_contacts: SchoolContact
+}
+type SchoolConvention {
+  conventional: Boolean!
+  muslim: Boolean!
+  christian: Boolean!
+}
+type SchoolClass {
+  private: Boolean
+  public: Boolean
+}
+type SchoolSection {
+  creche: Boolean
+  nursery: Boolean
+  after_school: Boolean
+  primary: Boolean
+  junior_secondary: Boolean
+  senior_secondary: Boolean
+}
+type SchoolType {
+  day_school: Boolean
+  boarding: Boolean
+}
+type SchoolContact {
+  email: String
+  phone_number: String
+}
+
+input ObjectInput {
+  name: String!
+  address: String!
+  school_class: Class!
+  school_convention: Convention!
+  school_section: Section!
+  school_population: Population!
+  school_contacts: Contacts!
+  school_type: SType!
+}
+
+input UpdateSchool {
+  name: String
+  address: String
+  school_class: Class
+  school_convention: Convention
+  school_section: Section
+  school_population: Population
+  school_contacts: Contacts
+  school_type: SType
+  school_approval: Approval
+  school_images: Images
+}
+input Class {
+  private: Boolean
+  public: Boolean
+}
+input Convention {
+  conventional: Boolean
+  muslim: Boolean
+  christian: Boolean
+}
+input Section {
+  creche: Boolean
+  nursery: Boolean
+  after_school: Boolean
+  primary: Boolean
+  junior_secondary: Boolean
+  senior_secondary: Boolean
+}
+input Population {
+  creche: Int
+  nursery: Int
+  after_school: Int
+  primary: Int
+  junior_secondary: Int
+  senior_secondary: Int
+}
+input Contacts {
+  email: String!
+  phone_number: String!
+}
+input SType {
+  day_school: Boolean
+  boarding: Boolean
+}
+input Approval {
+  approved_date: String
+  status: Boolean
+}
+input Images {
+  creche: String
+  nursery: String
+  after_school: String
+  primary: String
+  junior_secondary: String
+  senior_secondary: String
+}
