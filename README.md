@@ -19,8 +19,7 @@ The Nigerian Schools allows a user or proprietor to register his or her school o
 
  > User delete a registered school profile
 
-API calls guidelines for this project(`http://localhost:{process.env.POT}`)
-
+API calls guidelines for this project is in the schema situated in the homepage of the application
 #### Folder Structure
 
  The `src` directory houses the implementation using <a href="https://nodejs.org/">node.js</a>, <a href="https://www.howtographql.com/graphql-js">Graphql</a> & <a href="https://mongoosejs.com/">Mongoose</a>
