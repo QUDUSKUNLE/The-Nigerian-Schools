@@ -10,9 +10,15 @@ export default {
   },
 
   users: async (root, args, context, info) => {
+    const where = args.filter ? { $text: { $search: `${args.filter}` } } : {};
+    const { skip, first } = args;
     try {
-      const res = await User.find({}).populate();
-      return res;
+      const count = await User.countDocuments();
+      const res = await User.find(where).skip(skip).limit(first);
+      return {
+        count: count,
+        users: res
+      };
     } catch (e) { return e.message; }
   },
 
@@ -24,9 +30,12 @@ export default {
   },
 
   schools: async (root, args, context, info) => {
+    const where = args.filter ? { $text: { $search: `${args.filter}` } } : {};
+    const { skip, first } = args;
     try {
-      const schools = await Schools.find({}).populate();
-      return schools;
+      const count = await Schools.countDocuments();
+      const school = await Schools.find(where).skip(skip).limit(first);
+      return { count: count, schools: school };
     } catch (e) { return e.message; }
   }
 };

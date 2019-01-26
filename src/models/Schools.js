@@ -74,6 +74,8 @@ const SchoolsSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
+SchoolsSchema.index({ school_name: "text" })
 const Schools = mongoose.model('Schools', SchoolsSchema);
+
 
 export default Schools;
