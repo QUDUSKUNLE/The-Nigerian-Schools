@@ -1,8 +1,8 @@
 type Query {
   user(id: ID!): User
-  users(filter: String): [User]
+  users(filter: String, skip: Int, first: Int): Users
   school(id: ID!): School
-  schools: [School]
+  schools(filter: String, skip: Int, first: Int): Schools
 }
 
 type Mutation {
@@ -12,6 +12,16 @@ type Mutation {
   delete(id: ID!): Message
   register(input: ObjectInput): NewSchool
   updateSchool(id: ID!, input: UpdateSchool): NewSchool
+}
+
+type Users {
+  count: Int,
+  users: [User]
+}
+
+type Schools {
+  count: Int,
+  schools: [School]
 }
 
 type User {

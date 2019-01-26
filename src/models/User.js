@@ -37,6 +37,7 @@ UserSchema.methods.comparePassword = (candidatePassword, cb) => {
   });
 };
 
+UserSchema.index({ name: "text" })
 const User = mongoose.model("User", UserSchema);
 
 export default User;

@@ -9,7 +9,8 @@ import envs from '../loadenv';
 const typeDefs = readFileSync(__dirname + '/schema/schema.graphql', 'utf8');
 const resolvers = { Mutation, Query };
 
-mongoose.connect(envs.DB_CONFIG, { useCreateIndex: true, useNewUrlParser: true } );
+mongoose.set('useCreateIndex', true);
+mongoose.connect(envs.DB_CONFIG, { useNewUrlParser: true } );
 
 const server = new GraphQLServer({
   typeDefs,
