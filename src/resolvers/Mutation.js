@@ -7,16 +7,20 @@ import Schools from '../models/Schools';
 import token from '../Auth/token';
 
 
+const SALT_WORK_FACTOR = 10;
+
 export default {
 
 /**
 * signup a new user
 */
-  signup: async (root, { name, email, password, confirmPassword }) => {
+  signup: async (root, args, context, info) => {
     try {
-      if (password !== confirmPassword) {
+      if (args.password !== args.confirmPassword) {
         return new Error('Passwords did not match');
       }
+      const password = await bcrypt.hash(args.password, SALT_WORK_FACTOR);
+      const { name, email} = args;
       const newUser = new User({ name, email, password });
       const user = await newUser.save();
       const tokn = token(user);
@@ -29,9 +33,9 @@ export default {
   */
   register: async (root, args, context, info) => {
     try {
-      const Authorization = context.request.headers.authorization;
-      if (!Authorization) return new Error('No valid token is provided');
-      const token = Authorization.replace('Bearer ', '');
+      const { authorization } = context.request.headers;
+      if (!authorization) return new Error('No valid token is provided');
+      const token = authorization.replace('Bearer ', '');
       const userId = jwt.verify(token, envs.APP_SECRET);
       const user = await User.findById({ _id: userId.token })
       if (!user) return new Error('User does not exist');

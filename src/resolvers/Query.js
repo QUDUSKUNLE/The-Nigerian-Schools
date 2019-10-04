@@ -1,6 +1,7 @@
 import User from '../models/User';
 import Schools from '../models/Schools';
 
+
 export default {
   user: async (root, args, context, info) => {
     try {
