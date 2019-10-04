@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 import { GraphQLServer } from 'graphql-yoga';
 import { readFileSync } from 'fs'
 
@@ -10,11 +10,11 @@ const typeDefs = readFileSync(__dirname + '/schema/schema.graphql', 'utf8');
 const resolvers = { Mutation, Query };
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect(envs.DB_CONFIG, { useNewUrlParser: true } );
+mongoose.connect(envs.DB_CONFIG, { useNewUrlParser: true });
 
 const server = new GraphQLServer({
   typeDefs,
   resolvers,
-  context: request => { return { ...request } },
+  context: request => ({ ...request }),
 });
-server.start(() => console.log(`Server is running on http://localhost:${envs.PORT}`));
+server.start(() => console.log(`Server is running on http://127.0.0.1:${envs.PORT}`));
