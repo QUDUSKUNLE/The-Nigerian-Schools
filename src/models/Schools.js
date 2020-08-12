@@ -15,25 +15,25 @@ const SchoolsSchema = new mongoose.Schema({
   },
   school_convention: {
     type: {
-      conventional: Boolean,
-      muslim: Boolean,
-      christian: Boolean,
+      conventional: String,
+      muslim: String,
+      christian: String,
     }, required: true
   },
   school_class: {
     type: {
-      private: Boolean,
-      public: Boolean
+      private: String,
+      public: String
     }, required: true
   },
   school_section: {
     type: {
-      creche: Boolean,
-      nursery: Boolean,
-      after_school: Boolean,
-      primary: Boolean,
-      junior_secondary: Boolean,
-      senior_secondary: Boolean
+      creche: String,
+      nursery: String,
+      after_school: String,
+      primary: String,
+      junior_secondary: String,
+      senior_secondary: String
     }, required: true
   },
   school_population: {
@@ -48,21 +48,21 @@ const SchoolsSchema = new mongoose.Schema({
   },
   school_approval: {
     approved_date: Date,
-    status: Boolean
+    status: String
   },
   school_type: {
     type: {
-      day_school: Boolean,
-      boarding: Boolean
+      day_school: String,
+      boarding: String,
     }, required: true
   },
   school_images: {
-    creche: { type: Array },
-    nursery: { type: Array },
-    after_school: { type: Array },
-    primary: { type: Array },
-    junior_secondary: { type: Array },
-    senior_secondary: { type: Array },
+    creche: { type: String },
+    nursery: { type: String },
+    after_school: { type: String },
+    primary: { type: String },
+    junior_secondary: { type: String },
+    senior_secondary: { type: String },
   },
   school_contacts: {
     type: {
@@ -74,7 +74,7 @@ const SchoolsSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-SchoolsSchema.index({ school_name: "text" })
+SchoolsSchema.index({ school_name: 'text' })
 const Schools = mongoose.model('Schools', SchoolsSchema);
 
 

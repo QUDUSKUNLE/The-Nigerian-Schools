@@ -36,7 +36,7 @@ export default {
     try {
       const count = await Schools.countDocuments();
       const school = await Schools.find(where).skip(skip).limit(first);
-      return { count: count, schools: school };
+      return { count, schools: school };
     } catch (e) { return e.message; }
   }
 };

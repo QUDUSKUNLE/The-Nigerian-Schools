@@ -28,7 +28,7 @@ type User {
   id: ID!
   email: String!
   name: String!
-  availability: Boolean!
+  availability: Data!
 }
 type AuthPayload {
   token: String!
@@ -36,12 +36,12 @@ type AuthPayload {
 }
 type NewProfile {
   message: String
-  success: Boolean
+  success: Data
   user: User
 }
 type Message {
   message: String!
-  success: Boolean
+  success: Data
 }
 type NewSchool {
   message: String!
@@ -49,8 +49,8 @@ type NewSchool {
 }
 type School {
   id: ID!
-  school_name: String
-  school_address: String
+  school_name: String!
+  school_address: String!
   school_convention: SchoolConvention
   school_class: SchoolClass
   school_section: SchoolSection
@@ -69,34 +69,38 @@ type UpdatedSchoolInformation {
   school_contacts: SchoolContact
 }
 type SchoolConvention {
-  conventional: Boolean!
-  muslim: Boolean!
-  christian: Boolean!
+  conventional: Data!
+  muslim: Data!
+  christian: Data!
 }
 type SchoolClass {
-  private: Boolean
-  public: Boolean
+  private: Data!
+  public: Data!
 }
 type SchoolSection {
-  creche: Boolean
-  nursery: Boolean
-  after_school: Boolean
-  primary: Boolean
-  junior_secondary: Boolean
-  senior_secondary: Boolean
+  creche: Data!
+  nursery: Data!
+  after_school: Data!
+  primary: Data!
+  junior_secondary: Data!
+  senior_secondary: Data!
 }
 type SchoolType {
-  day_school: Boolean
-  boarding: Boolean
+  day_school: Data!
+  boarding: Data!
 }
 type SchoolContact {
-  email: String
-  phone_number: String
+  email: String!
+  phone_number: String!
+}
+enum Data {
+  YES
+  NO
 }
 
 input ObjectInput {
-  name: String!
-  address: String!
+  school_name: String!
+  school_address: String!
   school_class: Class!
   school_convention: Convention!
   school_section: Section!
@@ -106,8 +110,8 @@ input ObjectInput {
 }
 
 input UpdateSchool {
-  name: String
-  address: String
+  school_name: String
+  school_address: String
   school_class: Class
   school_convention: Convention
   school_section: Section
@@ -118,47 +122,47 @@ input UpdateSchool {
   school_images: Images
 }
 input Class {
-  private: Boolean
-  public: Boolean
+  private: Data!
+  public: Data!
 }
 input Convention {
-  conventional: Boolean
-  muslim: Boolean
-  christian: Boolean
+  conventional: Data!
+  muslim: Data!
+  christian: Data!
 }
 input Section {
-  creche: Boolean
-  nursery: Boolean
-  after_school: Boolean
-  primary: Boolean
-  junior_secondary: Boolean
-  senior_secondary: Boolean
+  creche: Data!
+  nursery: Data!
+  after_school: Data!
+  primary: Data!
+  junior_secondary: Data!
+  senior_secondary: Data!
 }
 input Population {
-  creche: Int
-  nursery: Int
-  after_school: Int
-  primary: Int
-  junior_secondary: Int
-  senior_secondary: Int
+  creche: Int!
+  nursery: Int!
+  after_school: Int!
+  primary: Int!
+  junior_secondary: Int!
+  senior_secondary: Int!
 }
 input Contacts {
   email: String!
   phone_number: String!
 }
 input SType {
-  day_school: Boolean
-  boarding: Boolean
+  day_school: Data!
+  boarding: Data!
 }
 input Approval {
   approved_date: String
-  status: Boolean
+  status: Data!
 }
 input Images {
-  creche: String
-  nursery: String
-  after_school: String
-  primary: String
-  junior_secondary: String
-  senior_secondary: String
+  creche: String!
+  nursery: String!
+  after_school: String!
+  primary: String!
+  junior_secondary: String!
+  senior_secondary: String!
 }
